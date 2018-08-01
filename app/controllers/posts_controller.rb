@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 	else
 		render 'new'
 	end
-	end
+end
 	def edit
 		@post = Post.find(params[:id])	
 	end
@@ -33,7 +33,14 @@ class PostsController < ApplicationController
 		else
 		render 'edit'
 	end
-	end	
+
+	def delete
+		@post = Post.find(params[:id])
+		@post.destroy
+
+		redirect_to posts_path
+    end
+end	
 
 	private def post_params
 		params.require(:post).permit(:title, :body)
